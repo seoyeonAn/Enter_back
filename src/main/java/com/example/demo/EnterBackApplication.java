@@ -8,7 +8,6 @@ public class EnterBackApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EnterBackApplication.class, args);
-		// hye 230918
 	}
 
 }
