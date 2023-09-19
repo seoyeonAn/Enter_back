@@ -26,4 +26,9 @@ public class InfoServiceImp implements InfoService{
 		return infoDao.list(pv);
 	}
 	
+	@Override
+	public InfoDTO contentProcess(int info_seq) {
+		return infoDao.content(info_seq);
+	}
+	
 }
