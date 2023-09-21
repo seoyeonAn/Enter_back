@@ -19,18 +19,10 @@
        WHERE usersEmail = #{usersEmail}
     </select>
     
-    <!-- 회원 정보 수정 -->
-    <update id="updateUsers" parameterType="UsersDTO">
-        UPDATE users
-        SET  usersPassword=#{usersPassword}, usersName=#{usersName}, usersPhone=#{usersPhone}
-        WHERE usersEmail=#{usersEmail}   
-    </update>
-    
-    <!-- 비밀번호 변경 -->
-    <update id="updateByPass" parameterType="UsersDTO">
-      UPDATE users SET usersPassword=#{usersPassword}
-      WHERE usersEmail = #{usersEmail}
-    </update>
+     <select id="selectByPass"   parameterType="string"  resultType="UsersDTO">
+       SELECT * FROM users
+       WHERE usersPassword = #{usersPassword}
+    </select>
 	 
 	 
 	 

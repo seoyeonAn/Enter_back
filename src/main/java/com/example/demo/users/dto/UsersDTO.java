@@ -1,8 +1,8 @@
-package com.Users.dto;
+package com.example.demo.users.dto;
 
 import org.springframework.stereotype.Component;
 
-import com.Users.entity.UsersEntity;
+import com.example.demo.users.entity.UsersEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public class UsersDTO {
 	private String usersEmail;
 	private String usersPassword;
 	private String usersName;
-	private long usersPhone;
+	private String usersPhone;
 //	private boolean rememberEmail; 자동로그인 할가?????
 	
 	//dto->entity

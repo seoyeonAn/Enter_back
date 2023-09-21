@@ -38,8 +38,8 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 	
 	
 	//security
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	testImplementation 'org.springframework.security:spring-security-test'
+	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	//testImplementation 'org.springframework.security:spring-security-test'
 	
 	//jwt
 	implementation 'com.auth0:java-jwt:4.0.0'

@@ -1,4 +1,4 @@
-package com.Users.entity;
+package com.example.demo.users.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,17 +33,17 @@ import lombok.ToString;
 
 public class UsersEntity {
 	@Id
-	@Column(name="users_email")
+	@Column
 	private String usersEmail;
 	
-	@Column(name="users_password")
+	@Column
 	private String usersPassword;
 	
-	@Column(name="users_name")
+	@Column
 	private String usersName;
 	
 	@Column(name="users_phone")
-	private long usersPhone;
+	private String usersPhone;
 	
 
 }//end class
