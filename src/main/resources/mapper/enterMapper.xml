@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.example.demo.enter.dao.EnterDAO">
+	<select id="getEnterList" resultType="EnterDTO">
+		SELECT e.* , i.title
+		FROM enterlist e, information i
+		WHERE e.info_seq = i.info_seq
+	</select>
+	
+	<update id="updateEnterList" parameterType="EnterDTO">		UPDATE enterlist
+		SET completed=#{completed}
+		WHERE enter_seq=#{enter_seq}
+	</update>
+</mapper>
