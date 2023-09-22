@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Component
+//@Component
 public class EnterDTO {
 	private int enter_seq, completed, info_seq;
 	private String title;

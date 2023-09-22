@@ -6,11 +6,11 @@
 <mapper namespace="com.example.demo.enter.dao.EnterDAO">
 	<select id="getEnterList" resultType="EnterDTO">
 		SELECT e.* , i.title
-		FROM entertest e, information i
+		FROM enterlist e, information i
 		WHERE e.info_seq = i.info_seq
 	</select>
 	
-	<update id="updateEnterList" parameterType="EnterDTO">		UPDATE entertest
+	<update id="updateEnterList" parameterType="EnterDTO">		UPDATE enterlist
 		SET completed=#{completed}
 		WHERE enter_seq=#{enter_seq}
 	</update>
