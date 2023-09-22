@@ -29,14 +29,16 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
 	
 	//aop
 	implementation 'org.springframework.boot:spring-boot-starter-aop'
 	
 	//mybatis
-	//implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
-	
-	
+
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+
 	//security
 	//implementation 'org.springframework.boot:spring-boot-starter-security'
 	//testImplementation 'org.springframework.security:spring-security-test'
@@ -44,10 +46,10 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 	//jwt
 	implementation 'com.auth0:java-jwt:4.0.0'
 	
+
 	//jap
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
-implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.10'
-
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {
