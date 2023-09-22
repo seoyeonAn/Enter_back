@@ -9,21 +9,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class AuthInfo {
-	private String memberEmail;
-	private String memberName;
-	private String memberPass;
+	private String email;
+	private String name;
+	private String password;
 	
-	public AuthInfo(String memberEmail,  String memberPass) {
+	public AuthInfo(String email,  String password) {
 		super();
-		this.memberEmail = memberEmail;
+		this.email = email;
 		
-		this.memberPass = memberPass;
+		this.password = password;
 	}
 	  
-	public AuthInfo(String memberEmail, String memberName, String memberPass) {
+	public AuthInfo(String email, String name, String password) {
 		super();
-		this.memberEmail = memberEmail;
-		this.memberName = memberName;
-		this.memberPass = memberPass;
+		this.email = email;
+		this.name = name;
+		this.password = password;
 	}
 }

@@ -21,13 +21,13 @@ public class UsersServiceImp implements UsersService {
 		//Entity로 바꿔주기
 		UsersEntity entity=UsersDTO.toEntity(dto);
 		usersRepository.save(entity);
-		return new AuthInfo(dto.getUsersEmail(), dto.getUsersName(), dto.getUsersPassword());
+		return new AuthInfo(dto.getEmail(), dto.getName(), dto.getPassword());
 	}
 
 	@Override
 	public AuthInfo loginProcess(UsersDTO dto) {
 		
-		UsersEntity UsersEntity =  usersRepository.findByUsersEmail(dto.getUsersEmail());	
+		UsersEntity UsersEntity =  usersRepository.findByEmail(dto.getEmail());	
 //		UsersDTO UsersDTO = UsersDTO.toDTO(UsersEntity);
 //		
 //		if(UsersEntity == null) {
@@ -40,7 +40,7 @@ public class UsersServiceImp implements UsersService {
 //			throw new WrongEmailPasswordException();
 //		}			
 		
-		return new AuthInfo(UsersEntity.getUsersEmail(), UsersEntity.getUsersName(), UsersEntity.getUsersPassword());
+		return new AuthInfo(UsersEntity.getEmail(), UsersEntity.getName(), UsersEntity.getPassword());
 	}
 
 

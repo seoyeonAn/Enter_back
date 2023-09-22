@@ -25,13 +25,13 @@ public class UsersController {
 //	@Autowired
 //	   private BCryptPasswordEncoder encodePassword;
 	
-	
+	// http://localhost:8090/join
 	//회원가입 처리
 		@PostMapping("/join")
 		public String addMember(@RequestBody UsersDTO usersDTO) {		
 //			UsersDTO.setUsersPassword(encodePassword.encode(UsersDTO.getUsersPassword()));
-			usersDTO.setUsersPassword(usersDTO.getUsersPassword());
-             System.out.println(usersDTO.getUsersEmail());
+			usersDTO.setPassword(usersDTO.getPassword());
+             System.out.println(usersDTO.getEmail());
 			AuthInfo authInfo = usersService.addUsersProcess(usersDTO);		
 			return null;
 		}

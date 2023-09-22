@@ -22,29 +22,30 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsersDTO {
-	private String usersEmail;
-	private String usersPassword;
-	private String usersName;
-	private String usersPhone;
+	private String email;
+	private String password;
+	private String name;
+	private String phone;
 //	private boolean rememberEmail; 자동로그인 할가?????
 	
 	//dto->entity
 	public static UsersEntity toEntity(UsersDTO dto) {
 		UsersEntity entity = new UsersEntity();
-		entity.setUsersEmail(dto.getUsersEmail());
-		entity.setUsersPassword(dto.getUsersPassword());
-		entity.setUsersName(dto.getUsersName());
-		entity.setUsersPhone(dto.getUsersPhone());
+		entity.setEmail(dto.getEmail());
+		entity.setPassword(dto.getPassword());
+		entity.setName(dto.getName());
+		entity.setPhone(dto.getPhone());
 		return entity;
 	}
 	
 	//entity->dto
 	public static UsersDTO toDTO(UsersEntity entity) {
 		UsersDTO dto = new UsersDTO();
-		dto.setUsersEmail(entity.getUsersEmail());
-		dto.setUsersPassword(entity.getUsersPassword());
-		dto.setUsersName(entity.getUsersName());
-		dto.setUsersPhone(entity.getUsersPhone());
+		dto.setEmail(entity.getEmail());
+		dto.setPassword(entity.getPassword());
+		dto.setName(entity.getName());
+		dto.setPhone(entity.getPhone());
+		
 		return dto;
 	}
 	

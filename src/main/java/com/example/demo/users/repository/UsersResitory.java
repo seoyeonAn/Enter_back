@@ -10,6 +10,6 @@ public interface UsersResitory extends JpaRepository<UsersEntity, String>{
 	private String memberEmail;*/
 
 //find+(엔티티명-생략가능)+BY+변수이름   
-public UsersEntity findByUsersEmail(String UsersEmail); 
+public UsersEntity findByEmail(String Email); 
 
 }

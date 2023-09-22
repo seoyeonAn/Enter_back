@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,16 +35,16 @@ import lombok.ToString;
 public class UsersEntity {
 	@Id
 	@Column
-	private String usersEmail;
+	private String email;
 	
 	@Column
-	private String usersPassword;
+	private String password;
 	
 	@Column
-	private String usersName;
+	private String name;
 	
-	@Column(name="users_phone")
-	private String usersPhone;
+	@Column(name="phone")
+	private String phone;
 	
 
 }//end class
