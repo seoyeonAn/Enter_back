@@ -13,7 +13,7 @@
       <![CDATA[
 		select b.*
 		from (SELECT rownum AS rm, a.*
-		from (select info_seq, title, place, thumbnail, start_date, end_date 
+		from (select info_seq, title, place, thumbnail, start_date, end_date
 		from information)a)b
 		WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
 		ORDER BY info_seq

@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.info.dto.InfoDTO;
 import com.example.demo.info.dto.PageDTO;
-import com.example.demo.info.service.InfoServiceImp;
+import com.example.demo.info.service.InfoService;
 
 
 @CrossOrigin("*")
 @RestController
 public class InfoController {
 	@Autowired
-	private InfoServiceImp infoService;
+	private InfoService infoService;
 	
 	@Autowired
 	private PageDTO pdto;
@@ -31,7 +31,7 @@ public class InfoController {
 	@GetMapping("/info/{currentPage}")
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, PageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		int totalRecord = infoService.countProcess();
+		long totalRecord = infoService.countProcess();
 		if(totalRecord>=1) {
 			  this.currentPage = currentPage;
 
