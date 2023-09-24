@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 import com.example.demo.users.dto.AuthInfo;
 import com.example.demo.users.dto.UsersDTO;
 import com.example.demo.users.entity.UsersEntity;
-import com.example.demo.users.repository.UsersResitory;
+import com.example.demo.users.repository.UsersRepository;
 
 @Service
 public class UsersServiceImp implements UsersService {
 	public UsersServiceImp() { } //생성자
 	
 	@Autowired
-	private UsersResitory usersRepository;
+	private UsersRepository usersRepository;
 	
 	@Override
 	public AuthInfo addUsersProcess(UsersDTO dto) {
