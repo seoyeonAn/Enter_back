@@ -13,5 +13,4 @@ public interface UsersRepository extends JpaRepository<UsersEntity, String>{
 
 //find+(엔티티명-생략가능)+BY+변수이름   
 public UsersEntity findByEmail(String Email); 
-
 }
