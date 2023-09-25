@@ -11,5 +11,6 @@ import com.example.demo.enter.dto.EnterDTO;
 @Repository
 public interface EnterDAO {
 	public List<EnterDTO> getEnterList();
-	public int updateEnterList(EnterDTO dto); 
+	public int insertEnterList(EnterDTO dto);
+	//public int updateEnterList(EnterDTO dto); 
 }

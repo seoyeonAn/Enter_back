@@ -6,5 +6,5 @@ import com.example.demo.enter.dto.EnterDTO;
 
 public interface EnterService {
 	public List<EnterDTO> enterList();
-	public int update(EnterDTO dto);
+	public void insert(EnterDTO dto);
 }

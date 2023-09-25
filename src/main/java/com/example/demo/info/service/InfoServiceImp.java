@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.enter.dto.EnterDTO;
 import com.example.demo.info.dao.InfoDAO;
 import com.example.demo.info.dto.InfoDTO;
 import com.example.demo.info.dto.PageDTO;
@@ -15,6 +18,7 @@ import com.example.demo.info.entity.InfoEntity;
 import com.example.demo.info.repository.InfoRepository;
 
 @Service
+@Transactional
 public class InfoServiceImp implements InfoService{
 //	@Autowired
 //	private InfoDAO infoDao;
@@ -48,5 +52,6 @@ public class InfoServiceImp implements InfoService{
 		InfoDTO iDTO =InfoDTO.toDto(infoRepository.findByContent(info_seq));
 		return iDTO;
 	}
+
 	
 }
