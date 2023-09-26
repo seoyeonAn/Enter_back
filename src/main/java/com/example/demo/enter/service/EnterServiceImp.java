@@ -26,7 +26,6 @@ public class EnterServiceImp implements EnterService{
 	
 	@Override
 	public List<EnterDTO> enterList() {
-		//return enterDAO.getEnterList();
 		List<EnterDTO> aList = new ArrayList<>();
 		List<EnterEntity> result = enterRepository.findAll();
 		result.forEach(enter -> aList.add(EnterDTO.toDto(enter)));
@@ -36,8 +35,17 @@ public class EnterServiceImp implements EnterService{
 	@Override
 	public void insert(EnterDTO dto) {
 		EnterEntity entity = EnterDTO.toEntity(dto);		
-		//enterRepository.save(entity);
 		enterRepository.findSaveNew(entity);
 	}
+	
+//	@Override
+//	public void update(EnterDTO dto) {
+//		enterRepository.findByUpdateEntity(EnterDTO.toEntity(dto));
+//	}
+	
+//	@Override
+//	public void delete(long enter_seq) {
+//		enterRepository.findDelete(enter_seq);
+//	}
 
 }

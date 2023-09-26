@@ -2,11 +2,14 @@ package com.example.demo.enter.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.springframework.stereotype.Component;
 
 import com.example.demo.enter.entity.EnterEntity;
 import com.example.demo.info.dto.InfoDTO;
+import com.example.demo.info.entity.InfoEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +24,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
+//@Component
 public class EnterDTO {
 	@Id
 	@Column(insertable = false)
@@ -32,10 +36,14 @@ public class EnterDTO {
 	@Column(name="info_seq")
     private long info_seq;
 	
-    @Column(insertable = false)
-	private String title;
-	
-	//private InfoDTO infoDTO;
+//	@ManyToOne
+//	@JoinColumn(name="title")
+//	private InfoEntity infoEntity;
+ 
+
+	@Column(insertable = false)
+    private String title;
+//  private InfoDTO infoDTO;
 	
 	public static EnterDTO toDto(EnterEntity entity) {
 		return EnterDTO.builder()
@@ -54,5 +62,4 @@ public class EnterDTO {
 				.title(dto.getTitle())
 				.build();
 	}
-
 }

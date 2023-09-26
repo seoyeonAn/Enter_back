@@ -47,7 +47,7 @@ public class InfoController {
 	
 	// http://localhost:8090/info/view/1
 	@GetMapping("/info/view/{info_seq}")
-	public InfoDTO viewExecute(@PathVariable("info_seq") int info_seq) {		
+	public InfoDTO viewExecute(@PathVariable("info_seq") int info_seq) {	
 		 return  infoService.contentProcess(info_seq);		
 	}
 }
