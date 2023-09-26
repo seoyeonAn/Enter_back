@@ -1,15 +1,18 @@
 package com.example.demo.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.users.dto.AuthInfo;
 import com.example.demo.users.dto.UsersDTO;
+import com.example.demo.users.entity.BadRequestException;
 import com.example.demo.users.service.UsersService;
 
 
@@ -26,7 +29,7 @@ public class UsersController {
 //	   private BCryptPasswordEncoder encodePassword;
 	
 	// http://localhost:8090/join
-	//회원가입 처리
+//회원가입 처리
 		@PostMapping("/join")
 		public String addMember(@RequestBody UsersDTO usersDTO) {		
 //			UsersDTO.setUsersPassword(encodePassword.encode(UsersDTO.getUsersPassword()));
@@ -36,6 +39,16 @@ public class UsersController {
 			return null;
 		}
 		
-	
+		@GetMapping("/users/email")		
+//회원가입 시 이메일 유효성검사
+	public  long checkIdDuplication(@RequestParam(value="email") String email) throws BadRequestException{
+		System.out.println(email);
+		if(usersService.existsByEmail(email)) {
+			    return 0;
+			}else {
+				return 1;
+			}
+	}
+		
 	
 }//end class

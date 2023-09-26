@@ -26,7 +26,17 @@ public class UsersDTO {
 	private String password;
 	private String name;
 	private String phone;
-//	private boolean rememberEmail; 자동로그인 할가?????
+	private boolean reusersEmail;
+	private String authRole ; //인증 역할생성
+	
+	public boolean isUsersEmail() {
+		return reusersEmail;
+	}
+	
+	public boolean matchPassword(String password) {
+		return this.password.equals(password);
+	}
+	
 	
 	//dto->entity
 	public static UsersEntity toEntity(UsersDTO dto) {
