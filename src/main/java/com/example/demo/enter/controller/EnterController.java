@@ -28,16 +28,13 @@ public class EnterController {
 		map.put("enterList", enterService.enterList());
 		return map;
 	}
-	
-//	@PostMapping("/enter/insert")
-//	public void insertExcute(@RequestBody EnterDTO dto) {	
-//		enterService.insert(dto);
-//	} 
 
-	@PostMapping("/enter")
-	public void insertExcute(@RequestBody EnterDTO dto) {	
+	@PostMapping("/info/view")
+	public void insertExcute(EnterDTO dto) {	
 		enterService.insert(dto);
 	} 
+	
+	
 	// http://localhost:8090/enter/1/0
 //	@PutMapping("/enter/{enter_seq}/{completed}")
 //	public ResponseEntity<Object> putEnter(@PathVariable("enter_seq") long enter_seq, @PathVariable("completed") long completed) throws Exception {
