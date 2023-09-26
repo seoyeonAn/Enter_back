@@ -34,4 +34,5 @@ public class EnterEntity {
 	
 	@Column
 	private String title;
+
 }

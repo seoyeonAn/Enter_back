@@ -20,9 +20,6 @@ import com.example.demo.info.repository.InfoRepository;
 @Service
 @Transactional
 public class InfoServiceImp implements InfoService{
-//	@Autowired
-//	private InfoDAO infoDao;
-	
 	@Autowired
 	private InfoRepository infoRepository;
 	
@@ -30,25 +27,20 @@ public class InfoServiceImp implements InfoService{
 	
 	@Override
 	public long countProcess() {
-		//return infoDao.count();
 		return infoRepository.findCount();
 	}
 
 	@Override
 	public List<InfoDTO> listProcess(PageDTO pv) {
-		//return infoDao.list(pv);
 		List<InfoDTO> aList = new ArrayList<>();
 		List<InfoEntity> result = infoRepository.findAllActiveInformationNative(pv.getStartRow(), pv.getEndRow());
 
 		result.forEach(information -> aList.add(InfoDTO.toDto(information)));
 		return aList;
-		
 	}
 	
 	@Override
 	public InfoDTO contentProcess(long info_seq) {
-		//return infoDao.content(info_seq);
-		
 		InfoDTO iDTO =InfoDTO.toDto(infoRepository.findByContent(info_seq));
 		return iDTO;
 	}
