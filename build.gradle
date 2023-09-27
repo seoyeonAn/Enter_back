@@ -40,10 +40,11 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 
 	//security
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	//testImplementation 'org.springframework.security:spring-security-test'
 	
-	//jwt
+	//jwt( JSON Web Token)는 웹 애플리케이션과 서버 간에 정보를 안전하게 전송하기 위한 
+	//토큰 기반의 인증 및 인가 메커니즘을 제공하는 오픈 표준
 	implementation 'com.auth0:java-jwt:4.0.0'
 	
 
