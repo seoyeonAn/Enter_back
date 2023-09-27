@@ -2,6 +2,7 @@ package com.example.demo.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,22 +26,22 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 	
-//	@Autowired
-//	   private BCryptPasswordEncoder encodePassword;
+	@Autowired
+	   private BCryptPasswordEncoder encodePassword;
 	
 	// http://localhost:8090/join
 //회원가입 처리
 		@PostMapping("/join")
 		public String addMember(@RequestBody UsersDTO usersDTO) {		
 //			UsersDTO.setUsersPassword(encodePassword.encode(UsersDTO.getUsersPassword()));
-			usersDTO.setPassword(usersDTO.getPassword());
+			usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
              System.out.println(usersDTO.getEmail());
 			AuthInfo authInfo = usersService.addUsersProcess(usersDTO);		
 			return null;
 		}
-		
-		@GetMapping("/users/email")		
-//회원가입 시 이메일 유효성검사
+
+//회원가입 시 이메일 유효성검사	
+	@GetMapping("/users/email")		
 	public  long checkIdDuplication(@RequestParam(value="email") String email) throws BadRequestException{
 		System.out.println(email);
 		if(usersService.existsByEmail(email)) {

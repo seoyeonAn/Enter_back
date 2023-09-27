@@ -3,11 +3,9 @@ package com.example.demo.security.service;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
 import com.example.demo.users.dto.UsersDTO;
 
 
@@ -19,7 +17,7 @@ public class PrincipalDetails  implements UserDetails{
 	  
     }
 	
-    public PrincipalDetails(UsersDTO uersDTO) {
+    public PrincipalDetails(UsersDTO usersDTO) {
     	this.usersDTO = usersDTO;  	  
     }
 

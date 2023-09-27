@@ -60,8 +60,8 @@ public class SecurityConfig {
 		
 		//요청에 의한 인가(권한)검사 시작
 		http.authorizeHttpRequests()
-		.antMatchers("/", "/images/**",  "/login", "/member/signup", "/board/contentdownload/**",
-				     "/board/list/**").permitAll() // 로그인 없이 접근 허용한다.
+		.antMatchers("/", "/images/**",  "/login", "/join",
+				     "/info/**").permitAll() // 로그인 없이 접근 허용한다.
 		.anyRequest().authenticated() ; //그외  모든 요청에 대해서 인증(로그인)이 되어야 허용한다.
 		
 		return http.build();

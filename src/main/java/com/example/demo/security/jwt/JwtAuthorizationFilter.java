@@ -1,25 +1,24 @@
 package com.example.demo.security.jwt;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.example.demo.security.service.PrincipalDetails;
 import com.example.demo.users.dto.UsersDTO;
 import com.example.demo.users.entity.UsersEntity;
 import com.example.demo.users.repository.UsersRepository;
-import com.example.demo.security.service.PrincipalDetails;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
 	private  UsersRepository userRepository;	
@@ -54,7 +53,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
  		//JWT 토큰 검증을 해서 정상적인 사용자인지 확인=> 정상적인 요청인 경우
  		//jwt~filter.java에서 생선한 토큰값과 .getClaim("memberEmail")의 ""은 같은 값을 지녀야한다.
  		String jwtToken = request.getHeader("Authorization").replace("Bearer ","");
- 		String username = JWT.require(Algorithm.HMAC512("mySecurityCos")).build().verify(jwtToken).getClaim("memberEmail").asString();
+ 		String username = JWT.require(Algorithm.HMAC512("mySecurityCos")).build().verify(jwtToken).getClaim("Email").asString();
  		System.out.println("username:" + username);
  		
  		//서명이 정상적으로 처리되었으면

@@ -1,7 +1,7 @@
 package com.example.demo.security.jwt;
 
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +28,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.demo.security.service.PrincipalDetails;
 import com.example.demo.users.dto.UsersDTO;
-import com.example.demo.security.service.PrincipalDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 //Authentication(인증)
@@ -59,14 +58,16 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			 ObjectMapper om = new ObjectMapper();
 			 UsersDTO user = om.readValue(request.getInputStream(), UsersDTO.class);
 			 System.out.printf("Email : %s, Password:%s\n", user.getEmail(), user.getPassword());
+	
 			 
 			 UsernamePasswordAuthenticationToken authenticationToken = 
 					 new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+			 System.out.println("여기야!");		 
 			 
-			
+			 
 			 Authentication authentication = authManager.authenticate(authenticationToken);
 			 System.out.println("authencation :" + authentication.getPrincipal());
-			 
+			
 			 
 			PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
 			System.out.printf("로그인 완료됨(인증) : %s %s\n", principalDetails.getUsername(), principalDetails.getPassword());

@@ -1,7 +1,5 @@
 package com.example.demo.security.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +14,7 @@ import com.example.demo.users.repository.UsersRepository;
 public class PrincipalDetailesService  implements UserDetailsService{
 	
 	@Autowired
-	private UsersRepository usersRerepository;
+	private UsersRepository userRerepository;
 	
 	public PrincipalDetailesService() {
 		
@@ -30,7 +28,7 @@ public class PrincipalDetailesService  implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String Email) throws UsernameNotFoundException {
 		//System.out.println("loadUserByUsername:" + memberEmail);		
-		UsersEntity userEntity = usersRerepository.findByEmail(Email); //findbyemail로 처리하면 자동으로 option으로 처리됨
+		UsersEntity userEntity = userRerepository.findByEmail(Email); //findbyemail로 처리하면 자동으로 option으로 처리됨
 	
 //		Optional<MembersEntity> opt = memRepository.findById(memberEmail);		
 //		MembersEntity userEntity = opt.get();
@@ -39,6 +37,7 @@ public class PrincipalDetailesService  implements UserDetailsService{
 		if(userEntity == null) {
 			throw new UsernameNotFoundException(Email);
 		}
+	
 		
 		return new PrincipalDetails(UsersDTO.toDTO(userEntity));
 	}   
