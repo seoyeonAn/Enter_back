@@ -23,7 +23,7 @@ public class EnterController {
 	private EnterService enterService;
 	
 	public EnterController() {}
-	
+	//test
 	// http://localhost:8090/enter
 	@GetMapping("/enter")
 	public Map<String, Object> getList(){
