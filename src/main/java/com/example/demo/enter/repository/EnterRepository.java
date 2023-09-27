@@ -11,19 +11,19 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.enter.entity.EnterEntity;
 import com.example.demo.info.entity.InfoEntity;
 
-@Repository
 public interface EnterRepository extends JpaRepository<EnterEntity, Long>{
 	@Query(value="SELECT e.*, i.title FROM enterlist e, information i"
-			+ " WHERE e.info_seq= i.info_seq ORDER BY enter_seq DESC", nativeQuery=true)
+			+ " WHERE e.info_seq= i.info_seq ORDER BY e.enter_seq DESC", nativeQuery=true)
 	List<EnterEntity> findAll(@Param("entity") InfoEntity entity, @Param("title") String title);
 	
-	@Query(value="INSERT INTO enterlist VALUES (enterlist_seq.nextval,0,:#{#entity.infoSeq},'aa@aaa.com')", nativeQuery=true)
+	@Query(value="INSERT INTO enterlist VALUES (enterlist_seq.nextval,0,:infoSeq,'aa@aaa.com')", nativeQuery=true)
 	@Modifying
-	void findSaveNew(@Param("entity") EnterEntity entity);
+	//void findSaveNew(@Param("entity") EnterEntity entity , @Param("infoSeq") Long infoSeq);
+	void findSaveNew( @Param("infoSeq") Long infoSeq);
 	
-	//@Query(value="UPDATE enterlist SET completed=:#{#completed} WHERE enter_seq=:enter_seq}", nativeQuery=true)
-	//@Modifying
-	//void findByUpdateEntity(@Param("entity") EnterEntity entity);
+//	@Query(value="UPDATE enterlist SET completed=:#{#completed} WHERE enter_seq=:enterSeq}", nativeQuery=true)
+//	@Modifying
+//	void findByUpdateEntity(@Param("entity") EnterEntity entity);
 	
 	//	@Query(value="DELETE FROM enterlist WHERE enter_seq=:enter_seq" , nativeQuery=true)
 	//	@Modifying

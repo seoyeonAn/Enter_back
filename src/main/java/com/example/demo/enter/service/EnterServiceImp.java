@@ -16,9 +16,6 @@ import com.example.demo.enter.repository.EnterRepository;
 @Service
 @Transactional
 public class EnterServiceImp implements EnterService{
-//	@Autowired
-//	private EnterDAO enterDAO;
-	
 	@Autowired
 	private EnterRepository enterRepository;
 	
@@ -34,8 +31,9 @@ public class EnterServiceImp implements EnterService{
 
 	@Override
 	public void insert(EnterDTO dto) {
-		EnterEntity entity = EnterDTO.toEntity(dto);		
-		enterRepository.findSaveNew(entity);
+		EnterEntity entity = EnterDTO.toEntity(dto);			
+		//enterRepository.findSaveNew(entity, entity.getInfoEntity().getInfoSeq());
+		enterRepository.findSaveNew( entity.getInfoEntity().getInfoSeq());
 	}
 	
 //	@Override

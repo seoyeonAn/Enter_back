@@ -1,10 +1,5 @@
 package com.example.demo.enter.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.springframework.stereotype.Component;
 
 import com.example.demo.enter.entity.EnterEntity;
@@ -28,6 +23,7 @@ import lombok.ToString;
 public class EnterDTO {
 	private long enterSeq;
     private long completed;
+   
 
     private InfoDTO infoDTO = new InfoDTO();
 	
@@ -45,6 +41,7 @@ public class EnterDTO {
 	
 	public static EnterEntity toEntity(EnterDTO dto) {
 		InfoEntity infoEntity = new InfoEntity();
+		System.out.println("info_sql:" + dto.getInfoDTO().getInfoSeq());
 		infoEntity.setInfoSeq(dto.getInfoDTO().getInfoSeq());
 		infoEntity.setTitle(dto.getInfoDTO().getTitle());
 		

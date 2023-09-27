@@ -33,18 +33,25 @@ public class EnterController {
 	}
 
 	@PostMapping("/info/view")
-	public void insertExcute(EnterDTO dto) {	
+	public void insertExcute(EnterDTO dto, long infoSeq) {		
+		dto.getInfoDTO().setInfoSeq(infoSeq);		
 		enterService.insert(dto);
 	} 
 	
 //	@PutMapping("/enter")
-//	public ResponseEntity<Object> putEnter(@PathVariable("enter_seq") long enter_seq, @PathVariable("completed") long completed){
+//	public ResponseEntity<Object> updateExcute(@PathVariable("enterSeq") long enterSeq, @PathVariable("completed") long completed){
 //		EnterDTO dto = new EnterDTO();
-//		dto.setEnter_seq(enter_seq);
+//		dto.setEnterSeq(enterSeq);
 //		dto.setCompleted(completed==0?1:0);
 //		enterService.update(dto);
 //		return null;
 //	}
 	
+//	public void updateExcute(@PathVariable("enterSeq") long enterSeq, @PathVariable("completed") long completed){
+//		EnterDTO dto = new EnterDTO();
+//		dto.setEnterSeq(enterSeq);
+//		dto.setCompleted(completed==0?1:0);
+//		enterService.update(dto);
+//	}
 	
 }

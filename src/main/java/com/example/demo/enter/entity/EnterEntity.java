@@ -35,7 +35,7 @@ public class EnterEntity {
 	
 	@ManyToOne
 	@JoinColumn(name="info_seq")
-	private InfoEntity infoEntity;
+	private InfoEntity infoEntity= new InfoEntity();
 
 	
 }

@@ -13,6 +13,5 @@ public interface EnterDAO {
 	public List<EnterDTO> getEnterList();
 	public int insertEnterList(EnterDTO dto);
 	//public int updateEnterList(EnterDTO dto);
-	//public void updateEnterList(EnterDTO dto);
 	//public int deleteEnterList(int enter_seq);
 }
