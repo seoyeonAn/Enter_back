@@ -14,7 +14,7 @@ import com.example.demo.info.entity.InfoEntity;
 @Repository
 public interface EnterRepository extends JpaRepository<EnterEntity, Long>{
 	@Query(value="SELECT e.*, i.title FROM enterlist e, information i"
-			+ " WHERE e.infoSeq= i.infoSeq ORDER BY enterSeq DESC", nativeQuery=true)
+			+ " WHERE e.info_seq= i.info_seq ORDER BY enter_seq DESC", nativeQuery=true)
 	List<EnterEntity> findAll(@Param("entity") InfoEntity entity, @Param("title") String title);
 	
 	@Query(value="INSERT INTO enterlist VALUES (enterlist_seq.nextval,0,:#{#entity.infoSeq},'aa@aaa.com')", nativeQuery=true)
