@@ -1,4 +1,4 @@
-package com.example.demo.users.entity;
+package com.example.demo.mypage.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,33 +20,17 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-/*
-
-@NoArgsConstructor
-파라미터가 없는 기본 생성자를 생성
-
-@AllArgsConstructor
-모든 필드 값을 파라미터로 받는 생성자를 만듦
- 
--현재 members와 정확히 일치하는 칼럼들을 선언해줌
--private로 설정된 칼럼을 ID값으로 줌=@ID 
-
-*/
-
-public class UsersEntity {
+public class UserEntity {
 	@Id
-	@Column(nullable=false)
+	@Column
 	private String email;
 	
-	@Column(nullable=false)
+	@Column
 	private String password;
 	
-	@Column(nullable=false)
+	@Column
 	private String name;
 	
-	@Column(name="phone",nullable=false)
+	@Column(name="phone")
 	private String phone;
-	
-
-}//end class
+}
