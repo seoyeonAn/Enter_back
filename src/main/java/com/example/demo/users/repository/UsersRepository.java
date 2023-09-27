@@ -14,6 +14,4 @@ public interface UsersRepository extends JpaRepository<UsersEntity, String>{
 
 //이메일 중복검사(existsBy+변수이름)
 	boolean existsByEmail(String Email);
-	
-	
 }

@@ -26,10 +26,7 @@ public class UsersServiceImp implements UsersService {
 		return new AuthInfo(dto.getEmail(), dto.getName(), dto.getPassword());
 	}
 //회원가입 이메일 유효성검사
-	/*Transactional:: 
-	 * 데이터베이스를 다룰 때 트랜잭션을 적용하면 
-	 * 데이터 추가, 갱신, 삭제 등으로 이루어진 작업을 처리하던 중 
-	 * 오류가 발생했을 때 모든 작업들을 원상태로 되돌릴 수 있다. */
+
 	@Transactional
 	public boolean existsByEmail(String Email) {
 		return usersRepository.existsByEmail(Email);
