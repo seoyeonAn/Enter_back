@@ -7,6 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.demo.users.entity.UsersEntity;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,6 +45,10 @@ public class DiaryEntity {
 	@Column
 	private String upload;
 	
-	@Column
-	private String email;
+//	@Column
+//	private String email;
+	
+	@ManyToOne
+	@JoinColumn(name = "email")
+	private UsersEntity usersEntity = new UsersEntity();
 }

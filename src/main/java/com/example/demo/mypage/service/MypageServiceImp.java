@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.mypage.dto.DiaryDTO;
+import com.example.demo.mypage.entity.DiaryEntity;
+import com.example.demo.mypage.repository.DiaryRepository;
 import com.example.demo.mypage.repository.UserRepository;
 import com.example.demo.users.dto.AuthInfo;
 import com.example.demo.users.dto.UsersDTO;
@@ -18,21 +21,23 @@ import com.example.demo.users.repository.UsersRepository;
 @Transactional
 public class MypageServiceImp implements MypageService {
 	@Autowired
-	private UserRepository userRepository;
+	private UsersRepository usersRepository;
 	
 	@Autowired
-	private UsersRepository usersRepository;
+	private DiaryRepository diaryRepository;
 	
 	public MypageServiceImp() {}
 	
 	@Override
-	public List<UsersDTO> userList() {
-		List<UsersDTO> aList = new ArrayList<>();
-		List<UsersEntity> result = usersRepository.findAll();
-//		List<UsersEntity> result = userRepository.findByEmail(dto.getEmail());
-		
-		result.forEach(users -> aList.add(UsersDTO.toDTO(users)));
-		return aList;
+	public UsersDTO userList(String email) {	
+	UsersEntity result = usersRepository.findByEmail(email);
+////		List<UsersEntity> result = userRepository.findByEmail(dto.getEmail());
+//		
+//		result.forEach(users -> aList.add(UsersDTO.toDTO(users)));	 
+	
+	    
+	    
+		return  UsersDTO.toDTO(result);
 	}
 
 	@Override
@@ -49,5 +54,22 @@ public class MypageServiceImp implements MypageService {
 		return new AuthInfo(dto.getEmail(), dto.getName(), dto.getPassword());
 	}
 
+	@Override
+	public List<DiaryDTO> diaryList(String email) {
+		List<DiaryDTO> aList = new ArrayList<>();
+		List<DiaryEntity> result = diaryRepository.findByEmail(email);
+		
+		result.forEach(diary -> aList.add(DiaryDTO.toDto(diary)));
+		return aList;
+	}
+
+	@Override
+	public void diaryWriteProcess(DiaryDTO dto) {
+		
+
+//		DiaryEntity entity = DiaryDTO.toEntity(dto);
+		System.err.println("email:"+ dto.getUsersDTO().getEmail());
+		diaryRepository.findDiarywrite(DiaryDTO.toEntity(dto) , dto.getUsersDTO().getEmail());
+	}
 
 }
