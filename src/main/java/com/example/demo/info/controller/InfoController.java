@@ -7,18 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.info.dto.InfoDTO;
 import com.example.demo.info.dto.PageDTO;
-import com.example.demo.info.service.InfoServiceImp;
+import com.example.demo.info.service.InfoService;
 
 
 @CrossOrigin("*")
 @RestController
 public class InfoController {
 	@Autowired
-	private InfoServiceImp infoService;
+	private InfoService infoService;
 	
 	@Autowired
 	private PageDTO pdto;
@@ -31,7 +32,7 @@ public class InfoController {
 	@GetMapping("/info/{currentPage}")
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, PageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		int totalRecord = infoService.countProcess();
+		long totalRecord = infoService.countProcess();
 		if(totalRecord>=1) {
 			  this.currentPage = currentPage;
 
@@ -42,10 +43,10 @@ public class InfoController {
 		}
 		return map;
 	}
+
 	
-	// http://localhost:8090/info/view/1
-	@GetMapping("/info/view/{info_seq}")
-	public InfoDTO viewExecute(@PathVariable("info_seq") int info_seq) {		
-		 return  infoService.contentProcess(info_seq);		
+	@GetMapping("/info/view/{infoSeq}")
+	public InfoDTO viewExecute(@PathVariable("infoSeq") long infoSeq) {		
+		 return  infoService.contentProcess(infoSeq);		
 	}
 }
