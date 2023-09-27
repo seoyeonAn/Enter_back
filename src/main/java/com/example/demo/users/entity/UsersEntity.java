@@ -34,16 +34,16 @@ import lombok.ToString;
 
 public class UsersEntity {
 	@Id
-	@Column
+	@Column(nullable=false)
 	private String email;
 	
-	@Column
+	@Column(nullable=false)
 	private String password;
 	
-	@Column
+	@Column(nullable=false)
 	private String name;
 	
-	@Column(name="phone")
+	@Column(name="phone",nullable=false)
 	private String phone;
 	
 
