@@ -24,42 +24,34 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-//@Component
+@Component
 public class EnterDTO {
-	@Id
-	@Column(insertable = false)
-	private long enter_seq;
-	
-	@Column(insertable = false)
+	private long enterSeq;
     private long completed;
-	
-	@Column(name="info_seq")
-    private long info_seq;
-	
-//	@ManyToOne
-//	@JoinColumn(name="title")
-//	private InfoEntity infoEntity;
- 
 
-	@Column(insertable = false)
-    private String title;
-//  private InfoDTO infoDTO;
+    private InfoDTO infoDTO = new InfoDTO();
 	
 	public static EnterDTO toDto(EnterEntity entity) {
+		InfoDTO infoDTO = new InfoDTO();
+		infoDTO.setInfoSeq(entity.getInfoEntity().getInfoSeq());
+		infoDTO.setTitle(entity.getInfoEntity().getTitle());
+		
 		return EnterDTO.builder()
-				.enter_seq(entity.getEnter_seq())
+				.enterSeq(entity.getEnterSeq())
 				.completed(entity.getCompleted())
-				.info_seq(entity.getInfo_seq())
-				.title(entity.getTitle())
+				.infoDTO(infoDTO)
 				.build();		
 	}
 	
 	public static EnterEntity toEntity(EnterDTO dto) {
+		InfoEntity infoEntity = new InfoEntity();
+		infoEntity.setInfoSeq(dto.getInfoDTO().getInfoSeq());
+		infoEntity.setTitle(dto.getInfoDTO().getTitle());
+		
 		return EnterEntity.builder()
-				.enter_seq(dto.getEnter_seq())
+				.enterSeq(dto.getEnterSeq())
 				.completed(dto.getCompleted())
-				.info_seq(dto.getInfo_seq())
-				.title(dto.getTitle())
+				.infoEntity(infoEntity)
 				.build();
 	}
 }

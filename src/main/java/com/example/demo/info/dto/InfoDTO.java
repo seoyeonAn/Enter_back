@@ -23,13 +23,13 @@ import lombok.ToString;
 @Component
 @Builder
 public class InfoDTO {
-	private long info_seq;
+	private long infoSeq;
 	private String title, content, place, category, price, thumbnail, tel, homepage, tag;
-	private Date start_date, end_date;
+	private Date startDate, endDate;
 	
 	public static InfoDTO toDto(InfoEntity entity) {
 		return InfoDTO.builder()
-				.info_seq(entity.getInfo_seq())
+				.infoSeq(entity.getInfoSeq())
 				.title(entity.getTitle())
 				.content(entity.getContent())		
 				.place(entity.getPlace())
@@ -38,15 +38,15 @@ public class InfoDTO {
 				.thumbnail(entity.getThumbnail())
 				.tel(entity.getTel())
 				.homepage(entity.getHomepage())
-				.start_date(entity.getStart_date())
-				.end_date(entity.getEnd_date())
+				.startDate(entity.getStartDate())
+				.endDate(entity.getEndDate())
 				.tag(entity.getTag())
 				.build();
 	}
 	
 	public static InfoEntity toEntity(InfoDTO dto) {
 		return InfoEntity.builder()
-				.info_seq(dto.getInfo_seq())
+				.infoSeq(dto.getInfoSeq())
 				.title(dto.getTitle())
 				.content(dto.getContent())		
 				.place(dto.getPlace())
@@ -55,8 +55,8 @@ public class InfoDTO {
 				.thumbnail(dto.getThumbnail())
 				.tel(dto.getTel())
 				.homepage(dto.getHomepage())
-				.start_date(dto.getStart_date())
-				.end_date(dto.getEnd_date())
+				.startDate(dto.getStartDate())
+				.endDate(dto.getEndDate())
 				.tag(dto.getTag())
 				.build();
 	}

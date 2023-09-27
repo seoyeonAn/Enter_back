@@ -15,5 +15,6 @@ import com.example.demo.info.dto.PageDTO;
 public interface InfoDAO {
 	public int count();
 	public List<InfoDTO> list(PageDTO pv);
-	public InfoDTO content(int info_seq);
+	//public InfoDTO content(int info_seq);
+	public InfoDTO content(int infoSeq);
 }

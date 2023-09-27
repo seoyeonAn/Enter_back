@@ -8,6 +8,6 @@ import com.example.demo.info.dto.PageDTO;
 
 public interface InfoService {
 	public long countProcess();
-	public List<InfoDTO> listProcess(PageDTO pv);
-	public InfoDTO contentProcess(long info_seq);
+	public List<InfoDTO> listProcess(PageDTO pv);;
+	public InfoDTO contentProcess(long infoSeq);
 }

@@ -40,10 +40,9 @@ public class InfoServiceImp implements InfoService{
 	}
 	
 	@Override
-	public InfoDTO contentProcess(long info_seq) {
-		InfoDTO iDTO =InfoDTO.toDto(infoRepository.findByContent(info_seq));
+	public InfoDTO contentProcess(long infoSeq) {
+		InfoDTO iDTO =InfoDTO.toDto(infoRepository.findByContent(infoSeq));
 		return iDTO;
 	}
-
 	
 }

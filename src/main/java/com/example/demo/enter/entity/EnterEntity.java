@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.example.demo.info.entity.InfoEntity;
 import com.example.demo.users.entity.UsersEntity;
 
 import lombok.AllArgsConstructor;
@@ -26,13 +27,15 @@ import lombok.ToString;
 @Builder
 public class EnterEntity {
 	@Id
-	@Column
-	private long enter_seq;
+	@Column(name="enter_seq", insertable = false)
+	private long enterSeq;
 	
 	@Column
-	private long completed, info_seq;
+	private long completed;	
 	
-	@Column
-	private String title;
+	@ManyToOne
+	@JoinColumn(name="info_seq")
+	private InfoEntity infoEntity;
 
+	
 }

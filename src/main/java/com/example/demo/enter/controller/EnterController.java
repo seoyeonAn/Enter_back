@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,10 +37,8 @@ public class EnterController {
 		enterService.insert(dto);
 	} 
 	
-	
-	// http://localhost:8090/enter/1/0
-//	@PutMapping("/enter/{enter_seq}/{completed}")
-//	public ResponseEntity<Object> putEnter(@PathVariable("enter_seq") long enter_seq, @PathVariable("completed") long completed) throws Exception {
+//	@PutMapping("/enter")
+//	public ResponseEntity<Object> putEnter(@PathVariable("enter_seq") long enter_seq, @PathVariable("completed") long completed){
 //		EnterDTO dto = new EnterDTO();
 //		dto.setEnter_seq(enter_seq);
 //		dto.setCompleted(completed==0?1:0);

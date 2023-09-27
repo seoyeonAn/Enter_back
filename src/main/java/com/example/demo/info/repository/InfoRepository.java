@@ -17,14 +17,14 @@ public interface InfoRepository extends JpaRepository<InfoEntity, Long>{
 	@Query(value="SELECT b.* FROM (SELECT rownum AS rm, a.* FROM(SELECT i.*"
 		    + " FROM information i)a)b"	   
 		    + " WHERE b.rm>=:startRow AND b.rm<=:endRow"
-		    + " ORDER BY b.info_seq"
+//		    + " ORDER BY b.infoSeq"
 		, nativeQuery=true )
 	List<InfoEntity> findAllActiveInformationNative(@Param("startRow") long startRow, @Param("endRow") long endRow);
 	
-	//@Query(value="SELECT i.* FROM information i WHERE info_seq=:info_seq", nativeQuery=true)
-	@Query(value="SELECT e.enter_seq, i.* FROM information i, enterlist e"
-			+ " WHERE i.info_seq = e.info_seq(+)"
-			+ " AND i.info_seq=:info_seq", nativeQuery=true)
-	InfoEntity findByContent(@Param("info_seq") long info_seq);
-	
+
+	@Query(value="SELECT * FROM information WHERE infoSeq=:infoSeq", nativeQuery=true)
+//	@Query(value="SELECT e.enterSeq, i.* FROM information i, enterlist e"
+//			+ " WHERE i.infoSeq = e.infoSeq(+)"
+//			+ " AND i.infoSeq = :infoSeq", nativeQuery=true)
+	InfoEntity findByContent(@Param("infoSeq") long infoSeq);
 }

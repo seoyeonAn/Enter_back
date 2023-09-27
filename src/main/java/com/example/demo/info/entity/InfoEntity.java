@@ -24,12 +24,15 @@ import lombok.ToString;
 @Builder
 public class InfoEntity {
 	@Id
-	@Column
-	private long info_seq;
+	@Column(name="info_seq")
+	private long infoSeq;
 	
 	@Column
 	private String title, content, place, category, price, thumbnail, tel, homepage, tag;
 	
-	@Column
-	private Date start_date, end_date;
+	@Column(name="start_date")
+	private Date startDate;
+	
+	@Column(name="end_date")
+	private Date endDate;
 }
