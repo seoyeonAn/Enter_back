@@ -13,8 +13,8 @@ import com.example.demo.info.dto.PageDTO;
 @Mapper
 @Repository
 public interface InfoDAO {
-	public int count();
+	//public int count();
+	public int count(Map<String, String> search);
 	public List<InfoDTO> list(PageDTO pv);
-	//public InfoDTO content(int info_seq);
 	public InfoDTO content(int infoSeq);
 }
