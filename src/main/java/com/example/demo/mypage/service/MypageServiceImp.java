@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.enter.repository.EnterRepository;
 import com.example.demo.mypage.dto.DiaryDTO;
+import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.entity.DiaryEntity;
+import com.example.demo.mypage.entity.EnterlistEntity;
 import com.example.demo.mypage.repository.DiaryRepository;
+import com.example.demo.mypage.repository.EnterlistRepository;
 import com.example.demo.mypage.repository.UserRepository;
 import com.example.demo.users.dto.AuthInfo;
 import com.example.demo.users.dto.UsersDTO;
@@ -25,6 +29,9 @@ public class MypageServiceImp implements MypageService {
 	
 	@Autowired
 	private DiaryRepository diaryRepository;
+	
+	@Autowired
+	private EnterlistRepository enterlistRepository;
 	
 	public MypageServiceImp() {}
 	
@@ -71,5 +78,21 @@ public class MypageServiceImp implements MypageService {
 		System.err.println("email:"+ dto.getUsersDTO().getEmail());
 		diaryRepository.findDiarywrite(DiaryDTO.toEntity(dto) , dto.getUsersDTO().getEmail());
 	}
+	
+	
+	////////////
+	@Override
+	public List<EnterlistDTO> enterList() {
+		List<EnterlistDTO> aList = new ArrayList<>();
+		List<EnterlistEntity> result = enterlistRepository.findAll();
+		result.forEach(enterlist -> aList.add(EnterlistDTO.toDto(enterlist)));
+		return aList;
+	}
 
+	@Override
+	public void insert(EnterlistDTO dto) {
+		EnterlistEntity entity = EnterlistDTO.toEntity(dto);			
+		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq());
+	}
+	
 }

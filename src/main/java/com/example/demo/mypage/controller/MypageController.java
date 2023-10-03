@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.mypage.dto.DiaryDTO;
+import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.service.MypageService;
 import com.example.demo.users.dto.UsersDTO;
 
@@ -49,4 +50,17 @@ public class MypageController {
 		mypageService.diaryWriteProcess(diaryDTO);		
 	}
 	
+	//////
+	@GetMapping("/mypage")
+	public Map<String, Object> getList(){
+		Map<String, Object> map = new HashMap<>();
+		map.put("enterList", mypageService.enterList());
+		return map;
+	}
+
+	@PostMapping("/info/view")
+	public void insertExcute(EnterlistDTO dto, long infoSeq) {		
+		dto.getInfoDTO().setInfoSeq(infoSeq);		
+		mypageService.insert(dto);
+	} 
 }
