@@ -34,6 +34,10 @@ public class MypageController {
 		
 		map.put("userList", mypageService.userList(email));
 		map.put("diaryList", mypageService.diaryList(email));
+		
+		//
+		map.put("enterList", mypageService.enterList(email));
+		
 		return map;
 	}
 	
@@ -49,18 +53,11 @@ public class MypageController {
 		diaryDTO.getUsersDTO().setEmail(email);
 		mypageService.diaryWriteProcess(diaryDTO);		
 	}
-	
-	//////
-	@GetMapping("/mypage")
-	public Map<String, Object> getList(){
-		Map<String, Object> map = new HashMap<>();
-		map.put("enterList", mypageService.enterList());
-		return map;
-	}
-
+	//
 	@PostMapping("/info/view")
-	public void insertExcute(EnterlistDTO dto, long infoSeq) {		
-		dto.getInfoDTO().setInfoSeq(infoSeq);		
-		mypageService.insert(dto);
+	public void enterListTomyPage(EnterlistDTO dto, long infoSeq, String email) {		
+		dto.getInfoDTO().setInfoSeq(infoSeq);
+		dto.getUsersDTO().setEmail(email);
+		mypageService.insertEnterProcess(dto);
 	} 
 }

@@ -82,7 +82,7 @@ public class MypageServiceImp implements MypageService {
 	
 	////////////
 	@Override
-	public List<EnterlistDTO> enterList() {
+	public List<EnterlistDTO> enterList(String email) {
 		List<EnterlistDTO> aList = new ArrayList<>();
 		List<EnterlistEntity> result = enterlistRepository.findAll();
 		result.forEach(enterlist -> aList.add(EnterlistDTO.toDto(enterlist)));
@@ -90,7 +90,7 @@ public class MypageServiceImp implements MypageService {
 	}
 
 	@Override
-	public void insert(EnterlistDTO dto) {
+	public void insertEnterProcess(EnterlistDTO dto) {
 		EnterlistEntity entity = EnterlistDTO.toEntity(dto);			
 		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq());
 	}
