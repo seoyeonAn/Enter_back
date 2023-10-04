@@ -16,12 +16,18 @@ import com.example.demo.info.dto.InfoDTO;
 import com.example.demo.info.dto.PageDTO;
 import com.example.demo.info.entity.InfoEntity;
 import com.example.demo.info.repository.InfoRepository;
+import com.example.demo.mypage.dto.EnterlistDTO;
+import com.example.demo.mypage.entity.EnterlistEntity;
+import com.example.demo.mypage.repository.EnterlistRepository;
 
 @Service
 @Transactional
 public class InfoServiceImp implements InfoService{
 	@Autowired
 	private InfoRepository infoRepository;
+	
+	@Autowired
+	private EnterlistRepository enterlistRepository;
 	
 	public InfoServiceImp() {}
 	
@@ -50,6 +56,12 @@ public class InfoServiceImp implements InfoService{
 	public InfoDTO contentProcess(long infoSeq) {
 		InfoDTO iDTO =InfoDTO.toDto(infoRepository.findByContent(infoSeq));
 		return iDTO;
+	}
+	
+	@Override
+	public void insertEnterList(EnterlistDTO dto) {
+		EnterlistEntity entity = EnterlistDTO.toEntity(dto);
+		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq());
 	}
 	
 }
