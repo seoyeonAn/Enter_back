@@ -27,7 +27,7 @@ public class UsersDTO {
 	private String name;
 	private String phone;
 	private boolean reusersEmail;
-	private String authRole ; //인증 역할생성
+	
 	
 	public boolean isUsersEmail() {
 		return reusersEmail;
