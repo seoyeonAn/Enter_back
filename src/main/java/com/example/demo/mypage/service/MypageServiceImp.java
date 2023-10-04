@@ -29,7 +29,6 @@ public class MypageServiceImp implements MypageService {
 	@Autowired
 	private DiaryRepository diaryRepository;
 	
-	
 	@Autowired
 	private EnterlistRepository enterlistRepository;
 	
@@ -88,9 +87,16 @@ public class MypageServiceImp implements MypageService {
 		return aList;
 	}
 	
-//	@Override
-//	public void insertEnterList(EnterlistDTO dto) {
-//		EnterlistEntity entity = EnterlistDTO.toEntity(dto);
-//		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq());
-//	}
+	@Override
+	public void insertEnterList(EnterlistDTO dto) {
+		EnterlistEntity entity = EnterlistDTO.toEntity(dto);
+		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq());
+	}
+	
+	@Override
+	public void updateEnterList(EnterlistDTO dto) {
+		EnterlistEntity entity = EnterlistDTO.toEntity(dto);
+		enterlistRepository.findByUpdateEntity(entity);
+	}
+	
 }

@@ -15,7 +15,11 @@ public interface EnterlistRepository extends JpaRepository<EnterlistEntity, Long
 			+ " WHERE e.info_seq= i.info_seq ORDER BY e.enter_seq DESC", nativeQuery=true)
 	List<EnterlistEntity> findAll(@Param("entity") InfoEntity entity, @Param("title") String title);
 	
-	@Query(value="INSERT INTO enterlist VALUES (enterlist_seq.nextval,0,:infoSeq,:email)", nativeQuery=true)
+	@Query(value="INSERT INTO enterlist VALUES (enterlist_seq.nextval,0,:infoSeq,'aa@aaa.com')", nativeQuery=true)
 	@Modifying
-	void findSaveNew( @Param("infoSeq") Long infoSeq);
+	void findSaveNew(@Param("infoSeq") Long infoSeq);
+	
+	@Query(value="UPDATE enterlist SET completed=:#{#entity.completed} WHERE enter_seq=:#{#entity.enterSeq}", nativeQuery=true)
+	@Modifying
+	void findByUpdateEntity(@Param("entity") EnterlistEntity entity);
 }
