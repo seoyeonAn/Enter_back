@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.enter.dto.EnterDTO;
-import com.example.demo.enter.entity.EnterEntity;
-import com.example.demo.enter.repository.EnterRepository;
 import com.example.demo.mypage.dto.DiaryDTO;
 import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.entity.DiaryEntity;
