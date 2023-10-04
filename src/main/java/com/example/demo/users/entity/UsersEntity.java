@@ -36,13 +36,13 @@ import lombok.ToString;
 
 public class UsersEntity {
 	@Id
-	@Column(nullable=false)
+	@Column(name = "email" , nullable=false)
 	private String email;
 	
-	@Column(nullable=false)
+	@Column(name = "password", nullable=false)
 	private String password;
 	
-	@Column(nullable=false)
+	@Column(name = "name",nullable=false)
 	private String name;
 	
 	@Column(name="phone",nullable=false)

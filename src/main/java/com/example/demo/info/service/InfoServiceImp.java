@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.enter.dto.EnterDTO;
 import com.example.demo.info.dao.InfoDAO;
 import com.example.demo.info.dto.InfoDTO;
 import com.example.demo.info.dto.PageDTO;
