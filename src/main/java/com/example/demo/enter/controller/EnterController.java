@@ -32,11 +32,11 @@ public class EnterController {
 		return map;
 	}
 
-//	@PostMapping("/info/view")
-//	public void insertExcute(EnterDTO dto, long infoSeq) {		
-//		dto.getInfoDTO().setInfoSeq(infoSeq);		
-//		enterService.insert(dto);
-//	} 
+	@PostMapping("/info/view")
+	public void insertExcute(EnterDTO dto, long infoSeq) {		
+		dto.getInfoDTO().setInfoSeq(infoSeq);		
+		enterService.insert(dto);
+	} 
 	
 //	@PutMapping("/enter")
 //	public ResponseEntity<Object> updateExcute(@PathVariable("enterSeq") long enterSeq, @PathVariable("completed") long completed){
