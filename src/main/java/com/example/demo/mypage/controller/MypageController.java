@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.mypage.dto.DiaryDTO;
+import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.service.MypageService;
 import com.example.demo.users.dto.UsersDTO;
 
@@ -33,6 +34,7 @@ public class MypageController {
 		
 		map.put("userList", mypageService.userList(email));
 		map.put("diaryList", mypageService.diaryList(email));
+		map.put("enterList", mypageService.enterList(email));
 		return map;
 	}
 	
