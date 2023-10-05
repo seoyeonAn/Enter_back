@@ -32,7 +32,7 @@ public class InfoController {
 	private PageDTO pdto;
 	
 	private int currentPage;
-	
+
 	public InfoController() {}
 	
 	// http://localhost:8090/info/1
@@ -41,7 +41,7 @@ public class InfoController {
 			@RequestParam(defaultValue="") String searchKey,
 			@RequestParam(defaultValue="") String searchWord, PageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("searchKey : "+searchKey);//카테고리
+		System.out.println("searchKey : "+searchKey);//카테고리 
 		System.out.println("searchWord : "+searchWord);//검색어
 		
 		long totalRecord = infoService.countProcess(searchKey, searchWord);
@@ -50,7 +50,6 @@ public class InfoController {
 		if(totalRecord>=1) {
 			this.currentPage = currentPage;
 
-			
 		   this.pdto = new PageDTO(this.currentPage, totalRecord, searchKey, searchWord);
 
 		   map.put("infoList", infoService.listProcess(this.pdto));
