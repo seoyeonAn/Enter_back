@@ -37,6 +37,23 @@ public interface InfoRepository extends JpaRepository<InfoEntity, Long>{
 			@Param("seachKey") String seachKey,
 			@Param("searchWord") String searchWord);
 
+	@Query(value="SELECT b.* FROM (SELECT rownum AS rm, a.* FROM(SELECT i.*"
+		    + " FROM information i)a)b"	   
+		    + " WHERE b.rm>=:startRow AND b.rm<=:endRow"
+		    + " AND category LIKE '%'||"
+		    + ":#{#seachKey}"
+		    + "||'%'"
+		    + " AND title LIKE '%'||"
+		    + ":#{#searchWord}"
+		    + "||'%'"
+		    + " ORDER BY b.info_seq"
+		, nativeQuery=true )
+	List<InfoEntity> findAllActiveInformationMuseumNative(@Param("startRow") long startRow, @Param("endRow") long endRow,
+			@Param("seachKey") String seachKey,
+			@Param("searchWord") String searchWord);
+	
+	
+	
 	@Query(value="SELECT * FROM information WHERE info_seq = :infoSeq", nativeQuery=true)
 	InfoEntity findByContent(@Param("infoSeq") long infoSeq);
 }

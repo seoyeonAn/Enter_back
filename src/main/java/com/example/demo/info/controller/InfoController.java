@@ -31,7 +31,7 @@ public class InfoController {
 	private PageDTO pdto;
 	
 	private int currentPage;
-	
+
 	public InfoController() {}
 	
 	// http://localhost:8090/info/1
@@ -57,6 +57,7 @@ public class InfoController {
 		}
 		return map;
 	}
+	
 
 	@GetMapping("/info/view/{infoSeq}")
 	public InfoDTO viewExecute(@PathVariable("infoSeq") long infoSeq) {		
