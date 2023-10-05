@@ -29,7 +29,7 @@ public class InfoController {
 	public InfoController() {}
 	
 	// http://localhost:8090/info/1
-	@GetMapping("/info/{currentPage}")
+//	@GetMapping("/info/{currentPage}")
 //	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, PageDTO pv) {
 //		Map<String, Object> map = new HashMap<>();
 //		long totalRecord = infoService.countProcess();
@@ -43,11 +43,12 @@ public class InfoController {
 //		}
 //		return map;
 //	}
+	@GetMapping("/info/{currentPage}")
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage,
 			@RequestParam(defaultValue="") String searchKey,
 			@RequestParam(defaultValue="") String searchWord, PageDTO pv) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("searchKey : "+searchKey);//카테고리
+		System.out.println("searchKey : "+searchKey);//카테고리 
 		System.out.println("searchWord : "+searchWord);//검색어
 		
 		long totalRecord = infoService.countProcess(searchKey, searchWord);
@@ -56,7 +57,6 @@ public class InfoController {
 		if(totalRecord>=1) {
 			this.currentPage = currentPage;
 
-			
 		   this.pdto = new PageDTO(this.currentPage, totalRecord, searchKey, searchWord);
 
 		   map.put("infoList", infoService.listProcess(this.pdto));
@@ -64,7 +64,6 @@ public class InfoController {
 		}
 		return map;
 	}
-	
 
 	@GetMapping("/info/view/{infoSeq}")
 	public InfoDTO viewExecute(@PathVariable("infoSeq") long infoSeq) {		

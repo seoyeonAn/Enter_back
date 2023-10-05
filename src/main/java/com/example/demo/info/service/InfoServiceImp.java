@@ -38,22 +38,14 @@ public class InfoServiceImp implements InfoService{
 		Map<String, String> search = new HashMap<String, String>();
 		search.put("searchKey", searchKey);
 		search.put("searchWord", searchWord);
-		//return infoRepository.countByCategoryAndTitle(search);
-		return infoRepository.countByCategoryAndTitle(searchKey, searchWord);
+		return infoRepository.countByCategoryAndTitle(search);
+		//return infoRepository.countByCategoryAndTitle(searchKey, searchWord);
 	}	
 
 	@Override
 	public List<InfoDTO> listProcess(PageDTO pv) {
 		List<InfoDTO> aList = new ArrayList<>();
 		//List<InfoEntity> result = infoRepository.findAllActiveInformationNative(pv.getStartRow(), pv.getEndRow());
-		List<InfoEntity> result = infoRepository.findAllActiveInformationNative(pv.getStartRow(), pv.getEndRow(),pv.getSearchKey(), pv.getSearchWord());
-		result.forEach(information -> aList.add(InfoDTO.toDto(information)));
-		return aList;
-	}
-	
-	@Override
-	public List<InfoDTO> museumList(PageDTO pv) {
-		List<InfoDTO> aList = new ArrayList<>();
 		List<InfoEntity> result = infoRepository.findAllActiveInformationNative(pv.getStartRow(), pv.getEndRow(),pv.getSearchKey(), pv.getSearchWord());
 		result.forEach(information -> aList.add(InfoDTO.toDto(information)));
 		return aList;
