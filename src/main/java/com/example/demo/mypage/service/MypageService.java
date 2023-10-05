@@ -16,6 +16,5 @@ public interface MypageService {
 	public void diaryWriteProcess(DiaryDTO dto);
 	
 	public List<EnterlistDTO> enterList(String email);
-	public void insertEnterList(EnterlistDTO dto, UsersDTO udto);
-	public void updateEnterList(EnterlistDTO dto);
+	//public void insertEnterList(EnterlistDTO dto);
 }
