@@ -13,7 +13,6 @@ import com.example.demo.mypage.entity.DiaryEntity;
 import com.example.demo.mypage.entity.EnterlistEntity;
 import com.example.demo.mypage.repository.DiaryRepository;
 import com.example.demo.mypage.repository.EnterlistRepository;
-import com.example.demo.mypage.repository.UserRepository;
 import com.example.demo.users.dto.AuthInfo;
 import com.example.demo.users.dto.UsersDTO;
 import com.example.demo.users.entity.UsersEntity;
