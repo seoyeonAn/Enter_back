@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.info.dto.InfoDTO;
 import com.example.demo.info.dto.PageDTO;
 import com.example.demo.info.service.InfoService;
+import com.example.demo.mypage.dto.EnterlistDTO;
+import com.example.demo.mypage.service.MypageService;
 
 
 @CrossOrigin("*")
@@ -20,6 +23,9 @@ import com.example.demo.info.service.InfoService;
 public class InfoController {
 	@Autowired
 	private InfoService infoService;
+	
+	@Autowired 
+	private MypageService mypageService;
 	
 	@Autowired
 	private PageDTO pdto;
@@ -30,19 +36,6 @@ public class InfoController {
 	
 	// http://localhost:8090/info/1
 	@GetMapping("/info/{currentPage}")
-//	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage, PageDTO pv) {
-//		Map<String, Object> map = new HashMap<>();
-//		long totalRecord = infoService.countProcess();
-//		if(totalRecord>=1) {
-//			  this.currentPage = currentPage;
-//
-//		   this.pdto = new PageDTO(this.currentPage, totalRecord);
-//		  
-//		   map.put("infoList", infoService.listProcess(this.pdto));
-//		   map.put("pv", this.pdto);
-//		}
-//		return map;
-//	}
 	public Map<String, Object> listExecute(@PathVariable("currentPage") int currentPage,
 			@RequestParam(defaultValue="") String searchKey,
 			@RequestParam(defaultValue="") String searchWord, PageDTO pv) {
@@ -69,4 +62,11 @@ public class InfoController {
 	public InfoDTO viewExecute(@PathVariable("infoSeq") long infoSeq) {		
 		 return  infoService.contentProcess(infoSeq);		
 	}
+	
+	@PostMapping("/info/view")
+	public void enterListTomyPage(EnterlistDTO dto, long infoSeq, String email) {		
+		dto.getInfoDTO().setInfoSeq(infoSeq);
+		dto.getUsersDTO().setEmail(email);
+		mypageService.insertEnterList(dto);
+	} 
 }
