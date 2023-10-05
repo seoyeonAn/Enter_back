@@ -96,7 +96,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withExpiresAt(new Date(System.currentTimeMillis() + (600 * 1000 * 600 *1L)))//만료시간 3분
 				.withClaim("Password", principalDetails.getUersDTO().getPassword()) //회원 이름
                 .withClaim("email", principalDetails.getUersDTO().getEmail()) //회원메일
-                .withClaim("name", principalDetails.getUersDTO().getName()) //이름
+                .withClaim("name", principalDetails.getUersDTO().getName())
+
                 .sign(Algorithm.HMAC512("mySecurityCos")); //signature을 생성하기 위한 security
 		
 		System.out.println("jwtToken:" + jwtToken);
