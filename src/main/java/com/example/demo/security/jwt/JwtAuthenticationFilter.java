@@ -1,7 +1,5 @@
 package com.example.demo.security.jwt;
 
-
-
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
