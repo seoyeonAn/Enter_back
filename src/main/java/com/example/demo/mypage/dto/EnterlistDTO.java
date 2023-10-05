@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Component
 @Getter
 @Setter
@@ -24,9 +25,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class EnterlistDTO {
-	private long enter_seq, completed;
-	//private String email;
-	
+	private long enterSeq, completed;
+
 	private InfoDTO infoDTO = new InfoDTO();
 	private UsersDTO usersDTO = new UsersDTO();
 	
@@ -40,10 +40,8 @@ public class EnterlistDTO {
 		usersDTO.setEmail(entity.getUsersEntity().getEmail());
 		
 		return EnterlistDTO.builder()
-				.enter_seq(entity.getEnter_seq())
+				.enterSeq(entity.getEnterSeq())
 				.completed(entity.getCompleted())
-				//.info_seq(entity.getInfo_seq())
-				//.email(entity.getEmail())
 				.infoDTO(infoDTO)
 				.usersDTO(usersDTO)
 				.build();
@@ -58,10 +56,8 @@ public class EnterlistDTO {
 		usersEntity.setEmail(dto.getUsersDTO().getEmail());
 		
 		return EnterlistEntity.builder()
-				.enter_seq(dto.getEnter_seq())
+				.enterSeq(dto.getEnterSeq())
 				.completed(dto.getCompleted())
-				//.info_seq(dto.getInfo_seq())
-				//.email(dto.getEmail())
 				.infoEntity(infoEntity)
 				.usersEntity(usersEntity)
 				.build();
