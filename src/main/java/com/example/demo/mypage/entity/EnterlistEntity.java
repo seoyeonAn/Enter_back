@@ -27,11 +27,17 @@ import lombok.ToString;
 @Builder
 public class EnterlistEntity {
 	@Id
-	@Column(name="enter_seq")
-	private long enterSeq;
+	@Column
+	private long enter_seq;
 	
 	@Column
 	private long completed;
+	
+//	@Column
+//	private long info_seq;
+	
+//	@Column
+//	private String email;
 	
 	@ManyToOne
 	@JoinColumn(name="info_seq")

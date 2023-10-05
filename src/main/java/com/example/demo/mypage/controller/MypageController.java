@@ -5,12 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,16 +51,4 @@ public class MypageController {
 		mypageService.diaryWriteProcess(diaryDTO);		
 	}
 	
-	@PutMapping("/mypage/{enterSeq}/{completed}")
-	public void updateEnter(@PathVariable("enterSeq") long enterSeq, @PathVariable("completed") long completed){
-		EnterlistDTO dto = new EnterlistDTO();
-		dto.setEnterSeq(enterSeq);
-		dto.setCompleted(completed == 0 ? 1 : 0);
-		mypageService.updateEnterList(dto);
-	}
 }
-
-
-
-
-
