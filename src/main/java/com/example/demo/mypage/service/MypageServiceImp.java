@@ -88,9 +88,10 @@ public class MypageServiceImp implements MypageService {
 	}
 	
 	@Override
-	public void insertEnterList(EnterlistDTO dto) {
+	public void insertEnterList(EnterlistDTO dto, UsersDTO udto) {
 		EnterlistEntity entity = EnterlistDTO.toEntity(dto);
-		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq());
+		UsersEntity uentity = UsersDTO.toEntity(udto);
+		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq(), uentity.getEmail());
 	}
 	
 	@Override

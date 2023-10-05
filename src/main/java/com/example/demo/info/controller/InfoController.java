@@ -16,6 +16,7 @@ import com.example.demo.info.dto.PageDTO;
 import com.example.demo.info.service.InfoService;
 import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.service.MypageService;
+import com.example.demo.users.dto.UsersDTO;
 
 
 @CrossOrigin("*")
@@ -64,9 +65,9 @@ public class InfoController {
 	}
 	
 	@PostMapping("/info/view")
-	public void enterListTomyPage(EnterlistDTO dto, long infoSeq, String email) {		
+	public void enterListTomyPage(EnterlistDTO dto, long infoSeq, UsersDTO udto, String email) {		
 		dto.getInfoDTO().setInfoSeq(infoSeq);
-		dto.getUsersDTO().setEmail(email);
-		mypageService.insertEnterList(dto);
+		udto.setEmail(email);
+		mypageService.insertEnterList(dto, udto);
 	} 
 }
