@@ -38,8 +38,8 @@ public class InfoServiceImp implements InfoService{
 		Map<String, String> search = new HashMap<String, String>();
 		search.put("searchKey", searchKey);
 		search.put("searchWord", searchWord);
-		return infoRepository.countByCategoryAndTitle(search);
-		//return infoRepository.countByCategoryAndTitle(searchKey, searchWord);
+		//return infoRepository.countByCategoryAndTitle(search);
+		return infoRepository.countByCategoryAndTitle(searchKey, searchWord);
 	}	
 
 	@Override

@@ -25,8 +25,8 @@ public interface InfoRepository extends JpaRepository<InfoEntity, Long>{
 			+ " AND title LIKE '%'||"
 			+ ":#{#searchWord}" + "||'%'"
 			, nativeQuery=true)
-	//long countByCategoryAndTitle(@Param("seachKey") String seachKey, @Param("searchWord") String searchWord);
-	long countByCategoryAndTitle(@Param("search") Map<String, String> search);
+	long countByCategoryAndTitle(@Param("seachKey") String seachKey, @Param("searchWord") String searchWord);
+	//long countByCategoryAndTitle(@Param("search") Map<String, String> search);
 
 	
 //	@Query(value="SELECT b.* FROM (SELECT rownum AS rm, a.* FROM(SELECT i.*"
