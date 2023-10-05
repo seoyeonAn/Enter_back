@@ -21,18 +21,16 @@ public interface InfoRepository extends JpaRepository<InfoEntity, Long>{
 	//long countByCategoryAndTitle(@Param("search") Map<String, String> search);
 
 
-	@Query(value="SELECT b.* FROM (SELECT rownum AS rm, a.* FROM(SELECT i.*"
-		    + " FROM information i)a)b"	   
-		    + " WHERE b.rm>=:startRow AND b.rm<=:endRow"
-		    + " AND category LIKE '%'||"
-		    + ":#{#seachKey}"
+	@Query(value="SELECT b.* FROM (SELECT rownum AS rm, a.* FROM(SELECT i.* FROM information i)a"
+			+ " WHERE category LIKE '%'||"
+			+ ":#{#seachKey}"
 		    + "||'%'"
-		    + " AND title LIKE '%'||"
-		    + ":#{#searchWord}"
-		    + "||'%'"
-		    + " ORDER BY b.info_seq"
-		, nativeQuery=true )
-
+			+ " AND title LIKE '%'||"
+			+ ":#{#searchWord}"
+			+ "||'%')b"
+			+ " WHERE b.rm>=:startRow AND b.rm<=:endRow"
+			+ " ORDER BY b.info_seq"
+		, nativeQuery=true)
 	List<InfoEntity> findAllActiveInformationNative(@Param("startRow") long startRow, @Param("endRow") long endRow,
 			@Param("seachKey") String seachKey,
 			@Param("searchWord") String searchWord);
