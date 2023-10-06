@@ -39,7 +39,7 @@ public class UsersController {
 		AuthInfo authInfo = usersService.addUsersProcess(usersDTO);		
 		return null;
 	}
-
+ 
 //회원가입 시 이메일 유효성검사	
 	@GetMapping("/users/email")		
 	public  long checkIdDuplication(@RequestParam(value="email") String email) throws BadRequestException{
