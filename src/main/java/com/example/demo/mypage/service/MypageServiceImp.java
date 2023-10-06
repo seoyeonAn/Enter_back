@@ -80,20 +80,18 @@ public class MypageServiceImp implements MypageService {
 		diaryRepository.findDiarywrite(DiaryDTO.toEntity(dto) , dto.getUsersDTO().getEmail());
 	}
 
-	
 	@Override
 	public List<EnterlistDTO> enterList(String email) {
 		List<EnterlistDTO> aList = new ArrayList<>();
-		List<EnterlistEntity> result = enterlistRepository.findAll();
+		List<EnterlistEntity> result = enterlistRepository.findAll(email);
 		result.forEach(enterlist -> aList.add(EnterlistDTO.toDto(enterlist)));
 		return aList;
-	}
-	
+	}	
+
 	@Override
-	public void insertEnterList(EnterlistDTO dto, UsersDTO udto) {
-		EnterlistEntity entity = EnterlistDTO.toEntity(dto);
-		UsersEntity uentity = UsersDTO.toEntity(udto);
-		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq(), uentity.getEmail());
+	public void insertEnterList(EnterlistDTO dto) {
+		EnterlistEntity entity = EnterlistDTO.toEntity(dto);			
+		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq(), dto.getUsersDTO().getEmail());
 	}
 	
 	@Override

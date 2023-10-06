@@ -59,14 +59,14 @@ public class InfoController {
 	}
 
 	@GetMapping("/info/view/{infoSeq}")
-	public InfoDTO viewExecute(@PathVariable("infoSeq") long infoSeq) {		
+	public InfoDTO viewExecute(@PathVariable("infoSeq") long infoSeq) {
 		 return  infoService.contentProcess(infoSeq);		
 	}
 	
 	@PostMapping("/info/view")
-	public void enterListTomyPage(EnterlistDTO dto, long infoSeq, UsersDTO udto, String email) {		
+	public void enterList(EnterlistDTO dto,long infoSeq, String email) {		
 		dto.getInfoDTO().setInfoSeq(infoSeq);
-		udto.setEmail(email);
-		mypageService.insertEnterList(dto, udto);
+		dto.getUsersDTO().setEmail(email);
+		mypageService.insertEnterList(dto);
 	} 
 }
