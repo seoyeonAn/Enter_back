@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,15 +20,20 @@ import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.service.MypageService;
 import com.example.demo.users.dto.UsersDTO;
 
+import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
 
 @CrossOrigin("*")
 @RestController
+@RequiredArgsConstructor
 public class MypageController {
-	@Autowired 
-	private MypageService mypageService;
+	//@Autowired 
+	private final MypageService mypageService;
 	
-	public MypageController() {}
+	//@Autowired
+	private final BCryptPasswordEncoder encodePassword;
+	
+	//public MypageController() {}
 	
 	@GetMapping("/mypage/{email}") 
 	public Map<String, Object> mypageList(@PathVariable("email") String email){
@@ -42,7 +48,7 @@ public class MypageController {
 	
 	@PostMapping("/mypage/updateuser")
 	public void updateUser(@RequestBody UsersDTO usersDTO) {
-//		UsersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
+		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
 		
 		mypageService.updateUserProcess(usersDTO);		
 	}
