@@ -18,20 +18,23 @@ import com.example.demo.users.dto.UsersDTO;
 import com.example.demo.users.entity.UsersEntity;
 import com.example.demo.users.repository.UsersRepository;
 
+import lombok.RequiredArgsConstructor;
+
 
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class MypageServiceImp implements MypageService {
-	@Autowired
-	private UsersRepository usersRepository;
+	//@Autowired
+	private final UsersRepository usersRepository;
 	
-	@Autowired
-	private DiaryRepository diaryRepository;
+	//@Autowired
+	private final DiaryRepository diaryRepository;
 	
-	@Autowired
-	private EnterlistRepository enterlistRepository;
+	//@Autowired
+	private final EnterlistRepository enterlistRepository;
 	
-	public MypageServiceImp() {}
+	//public MypageServiceImp() {}
 	
 	@Override
 	public UsersDTO userList(String email) {	
