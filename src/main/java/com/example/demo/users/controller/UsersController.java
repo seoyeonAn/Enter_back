@@ -32,7 +32,7 @@ public class UsersController {
 	// http://localhost:8090/join
 //회원가입 처리
 	@PostMapping("/join")
-	public String addMember(@RequestBody UsersDTO usersDTO) {		
+	public String addUser(@RequestBody UsersDTO usersDTO) {		
 //			UsersDTO.setUsersPassword(encodePassword.encode(UsersDTO.getUsersPassword()));
 		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
          System.out.println(usersDTO.getEmail());
