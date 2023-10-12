@@ -31,7 +31,7 @@ public class InfoController {
 	@Autowired
 	private PageDTO pdto;
 	
-	private int currentPage;
+	private long currentPage;
 
 	public InfoController() {}
 	
