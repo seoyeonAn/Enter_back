@@ -69,4 +69,14 @@ public class InfoController {
 		dto.getUsersDTO().setEmail(email);
 		mypageService.insertEnterList(dto);
 	} 
+	
+	@GetMapping("/main/maintaster")
+	public Map<String, Object> mainTaster() {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("exhibitionList", infoService.exhibitionListProcess());
+		map.put("showList", infoService.showListProcess());
+		map.put("museumList", infoService.museumListProcess());
+		return map;
+	}
 }

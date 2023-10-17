@@ -47,4 +47,28 @@ public class InfoServiceImp implements InfoService{
 		InfoDTO iDTO =InfoDTO.toDto(infoRepository.findByContent(infoSeq));
 		return iDTO;
 	}
+
+	@Override
+	public List<InfoDTO> exhibitionListProcess() {
+		List<InfoDTO> aList = new ArrayList<>();
+		List<InfoEntity> result = infoRepository.findAllexhibitionList();
+		result.forEach(infomation -> aList.add(InfoDTO.toDto(infomation)));
+		return aList;
+	}
+
+	@Override
+	public List<InfoDTO> showListProcess() {
+		List<InfoDTO> aList = new ArrayList<>();
+		List<InfoEntity> result = infoRepository.findAllshowList();
+		result.forEach(infomation -> aList.add(InfoDTO.toDto(infomation)));
+		return aList;
+	}
+
+	@Override
+	public List<InfoDTO> museumListProcess() {
+		List<InfoDTO> aList = new ArrayList<>();
+		List<InfoEntity> result = infoRepository.findAllmuseumList();
+		result.forEach(infomation -> aList.add(InfoDTO.toDto(infomation)));
+		return aList;
+	}
 }
