@@ -37,4 +37,37 @@ public interface InfoRepository extends JpaRepository<InfoEntity, Long>{
 
 	@Query(value="SELECT * FROM information WHERE info_seq = :infoSeq", nativeQuery=true)
 	InfoEntity findByContent(@Param("infoSeq") long infoSeq);
+	
+	@Query(value="SELECT *"
+			+ "FROM ("
+			+ "    SELECT *"
+			+ "    FROM information"
+			+ "    WHERE category = 'exhibition'"
+			+ "    ORDER BY dbms_random.value"
+			+ ")"
+			+ "WHERE ROWNUM <= 4"
+		, nativeQuery=true)
+	List<InfoEntity> findAllexhibitionList();
+	
+	@Query(value="SELECT *"
+			+ "FROM ("
+			+ "    SELECT *"
+			+ "    FROM information"
+			+ "    WHERE category = 'show'"
+			+ "    ORDER BY dbms_random.value"
+			+ ")"
+			+ "WHERE ROWNUM <= 4"
+		, nativeQuery=true)
+	List<InfoEntity> findAllshowList();
+	
+	@Query(value="SELECT *"
+			+ "FROM ("
+			+ "    SELECT *"
+			+ "    FROM information"
+			+ "    WHERE category = 'museum'"
+			+ "    ORDER BY dbms_random.value"
+			+ ")"
+			+ "WHERE ROWNUM <= 4"
+		, nativeQuery=true)
+	List<InfoEntity> findAllmuseumList();
 }

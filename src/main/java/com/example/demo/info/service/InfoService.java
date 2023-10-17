@@ -13,4 +13,8 @@ public interface InfoService {
 	public List<InfoDTO> listProcess(PageDTO pv);
 	
 	public InfoDTO contentProcess(long infoSeq);
+	
+	public List<InfoDTO> exhibitionListProcess();
+	public List<InfoDTO> showListProcess();
+	public List<InfoDTO> museumListProcess();
 }
