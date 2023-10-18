@@ -27,19 +27,19 @@ public class UsersController {
 	private UsersService usersService;
 	
 	@Autowired
-	   private BCryptPasswordEncoder encodePassword;
+   private BCryptPasswordEncoder encodePassword;
 	
 	// http://localhost:8090/join
 //회원가입 처리
-		@PostMapping("/join")
-		public String addMember(@RequestBody UsersDTO usersDTO) {		
+	@PostMapping("/join")
+	public String addMember(@RequestBody UsersDTO usersDTO) {		
 //			UsersDTO.setUsersPassword(encodePassword.encode(UsersDTO.getUsersPassword()));
-			usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
-             System.out.println(usersDTO.getEmail());
-			AuthInfo authInfo = usersService.addUsersProcess(usersDTO);		
-			return null;
-		}
-
+		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
+         System.out.println(usersDTO.getEmail());
+		AuthInfo authInfo = usersService.addUsersProcess(usersDTO);		
+		return null;
+	}
+ 
 //회원가입 시 이메일 유효성검사	
 	@GetMapping("/users/email")		
 	public  long checkIdDuplication(@RequestParam(value="email") String email) throws BadRequestException{

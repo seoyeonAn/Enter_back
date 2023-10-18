@@ -5,26 +5,35 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.mypage.dto.DiaryDTO;
+import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.service.MypageService;
 import com.example.demo.users.dto.UsersDTO;
 
+import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
 
 @CrossOrigin("*")
 @RestController
+@RequiredArgsConstructor
 public class MypageController {
-	@Autowired 
-	private MypageService mypageService;
+	//@Autowired 
+	private final MypageService mypageService;
 	
-	public MypageController() {}
+	//@Autowired
+	private final BCryptPasswordEncoder encodePassword;
+	
+	//public MypageController() {}
 	
 	@GetMapping("/mypage/{email}") 
 	public Map<String, Object> mypageList(@PathVariable("email") String email){
@@ -33,12 +42,13 @@ public class MypageController {
 		
 		map.put("userList", mypageService.userList(email));
 		map.put("diaryList", mypageService.diaryList(email));
+		map.put("enterList", mypageService.enterList(email));
 		return map;
 	}
 	
 	@PostMapping("/mypage/updateuser")
 	public void updateUser(@RequestBody UsersDTO usersDTO) {
-//		UsersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
+		usersDTO.setPassword(encodePassword.encode(usersDTO.getPassword()));
 		
 		mypageService.updateUserProcess(usersDTO);		
 	}
@@ -49,4 +59,16 @@ public class MypageController {
 		mypageService.diaryWriteProcess(diaryDTO);		
 	}
 	
+	@PutMapping("/mypage/{enterSeq}/{completed}")
+	public void updateEnter(@PathVariable("enterSeq") long enterSeq, @PathVariable("completed") long completed){
+		EnterlistDTO dto = new EnterlistDTO();
+		dto.setEnterSeq(enterSeq);
+		dto.setCompleted(completed == 0 ? 1 : 0);
+		mypageService.updateEnterList(dto);
+	}
 }
+
+
+
+
+

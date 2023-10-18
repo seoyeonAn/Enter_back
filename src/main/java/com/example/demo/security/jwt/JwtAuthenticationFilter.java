@@ -1,7 +1,5 @@
 package com.example.demo.security.jwt;
 
-
-
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -95,8 +93,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.withSubject("mycors")
 				.withExpiresAt(new Date(System.currentTimeMillis() + (600 * 1000 * 600 *1L)))//만료시간 3분
 				.withClaim("Password", principalDetails.getUersDTO().getPassword()) //회원 이름
-				.withClaim("authRole", principalDetails.getUersDTO().getAuthRole()) //회원권한
-                .withClaim("Email", principalDetails.getUersDTO().getEmail()) //회원메일
+                .withClaim("email", principalDetails.getUersDTO().getEmail()) //회원메일
+				.withClaim("name", principalDetails.getUersDTO().getName())//회원이름
                 .sign(Algorithm.HMAC512("mySecurityCos")); //signature을 생성하기 위한 security
 		
 		System.out.println("jwtToken:" + jwtToken);
@@ -106,9 +104,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		final Map<String, Object> body = new HashMap<String, Object>();
 		body.put("usersName", principalDetails.getUersDTO().getName());
-		body.put("Email", principalDetails.getUersDTO().getEmail());
-		body.put("authRole", principalDetails.getUersDTO().getAuthRole());
-		
+		body.put("email", principalDetails.getUersDTO().getEmail());
+		body.put("name", principalDetails.getUersDTO().getName());
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(response.getOutputStream(), body);		
 	}

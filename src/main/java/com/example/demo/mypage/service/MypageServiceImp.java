@@ -8,25 +8,33 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.mypage.dto.DiaryDTO;
+import com.example.demo.mypage.dto.EnterlistDTO;
 import com.example.demo.mypage.entity.DiaryEntity;
+import com.example.demo.mypage.entity.EnterlistEntity;
 import com.example.demo.mypage.repository.DiaryRepository;
-import com.example.demo.mypage.repository.UserRepository;
+import com.example.demo.mypage.repository.EnterlistRepository;
 import com.example.demo.users.dto.AuthInfo;
 import com.example.demo.users.dto.UsersDTO;
 import com.example.demo.users.entity.UsersEntity;
 import com.example.demo.users.repository.UsersRepository;
 
+import lombok.RequiredArgsConstructor;
+
 
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class MypageServiceImp implements MypageService {
-	@Autowired
-	private UsersRepository usersRepository;
+	//@Autowired
+	private final UsersRepository usersRepository;
 	
-	@Autowired
-	private DiaryRepository diaryRepository;
+	//@Autowired
+	private final DiaryRepository diaryRepository;
 	
-	public MypageServiceImp() {}
+	//@Autowired
+	private final EnterlistRepository enterlistRepository;
+	
+	//public MypageServiceImp() {}
 	
 	@Override
 	public UsersDTO userList(String email) {	
@@ -72,4 +80,24 @@ public class MypageServiceImp implements MypageService {
 		diaryRepository.findDiarywrite(DiaryDTO.toEntity(dto) , dto.getUsersDTO().getEmail());
 	}
 
+	@Override
+	public List<EnterlistDTO> enterList(String email) {
+		List<EnterlistDTO> aList = new ArrayList<>();
+		List<EnterlistEntity> result = enterlistRepository.findAll(email);
+		result.forEach(enterlist -> aList.add(EnterlistDTO.toDto(enterlist)));
+		return aList;
+	}	
+
+	@Override
+	public void insertEnterList(EnterlistDTO dto) {
+		EnterlistEntity entity = EnterlistDTO.toEntity(dto);			
+		enterlistRepository.findSaveNew(entity.getInfoEntity().getInfoSeq(), dto.getUsersDTO().getEmail());
+	}
+	
+	@Override
+	public void updateEnterList(EnterlistDTO dto) {
+		EnterlistEntity entity = EnterlistDTO.toEntity(dto);
+		enterlistRepository.findByUpdateEntity(entity);
+	}
+	
 }
