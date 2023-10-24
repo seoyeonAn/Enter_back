@@ -20,7 +20,7 @@ public class UsersDTO {
 	private String email;
 	private String password;
 	private String name;
-	private String phone;
+//	private String phone;
 	private boolean reusersEmail;
 	
 	
@@ -36,7 +36,7 @@ public class UsersDTO {
 		entity.setEmail(dto.getEmail());
 		entity.setPassword(dto.getPassword());
 		entity.setName(dto.getName());
-		entity.setPhone(dto.getPhone());
+//		entity.setPhone(dto.getPhone());
 		return entity;
 	}
 	
@@ -46,7 +46,7 @@ public class UsersDTO {
 		dto.setEmail(entity.getEmail());
 		dto.setPassword(entity.getPassword());
 		dto.setName(entity.getName());
-		dto.setPhone(entity.getPhone());
+//		dto.setPhone(entity.getPhone());
 		
 		return dto;
 	}
