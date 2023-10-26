@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,10 +13,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.example.demo.users.repository.UsersRepository;
 import com.example.demo.security.jwt.JwtAuthenticationFilter;
 import com.example.demo.security.jwt.JwtAuthorizationFilter;
 import com.example.demo.security.service.CorsConfig;
+import com.example.demo.security.service.PrincipalDetailesService;
+import com.example.demo.users.repository.UsersRepository;
 
 //[1] POSTMAN에서 테스트
 //POST http://localhost:8090/login
@@ -37,6 +39,9 @@ public class SecurityConfig {
 	
 	@Autowired
 	private CorsConfig corsConfig;
+	
+	@Autowired
+	private PrincipalDetailesService principalDetailesService;
 	
 	
 	@Bean
@@ -83,9 +88,19 @@ public class SecurityConfig {
 			http.addFilter(new JwtAuthenticationFilter(authenticationManager))
 			//인가(권한) 필터 등록
 			 .addFilter(new JwtAuthorizationFilter(authenticationManager, userRepository));
-			
+			http.authenticationProvider(authenticationProvider());
 		}
 	}
+	
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider daoProvider = new DaoAuthenticationProvider();
+		daoProvider.setUserDetailsService(principalDetailesService);
+		daoProvider.setPasswordEncoder(encodePassword());
+		daoProvider.setHideUserNotFoundExceptions(false);
+		return daoProvider;
+	}
+
 	
 }//end outer class
 

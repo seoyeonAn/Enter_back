@@ -33,7 +33,6 @@ public class PrincipalDetailesService  implements UserDetailsService{
 //		Optional<MembersEntity> opt = memRepository.findById(memberEmail);		
 //		MembersEntity userEntity = opt.get();
 		
-		
 		if(userEntity == null) {
 			throw new UsernameNotFoundException(Email);
 		}

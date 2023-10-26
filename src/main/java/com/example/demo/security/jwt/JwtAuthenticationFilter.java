@@ -1,6 +1,7 @@
 package com.example.demo.security.jwt;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -11,16 +12,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -119,6 +121,17 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("code", HttpStatus.UNAUTHORIZED.value());
         body.put("error", failed.getMessage());
+
+		String errorMsg;
+		if (failed instanceof UsernameNotFoundException) {
+			errorMsg="아이디를 확인해주세요";
+		}
+		else {
+			errorMsg = "비밀번호가 틀립니다.";
+		} 
+
+//		errorMsg = URLEncoder.encode(errorMsg, "UTF-8");
+		body.put("message", errorMsg);
 
         new ObjectMapper().writeValue(response.getOutputStream(), body);
 	}	
